@@ -5,9 +5,13 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "server": "micro ./components/pages/api/graphql.js"
   },
   "dependencies": {
+    "@apollo/client": "^3.2.9",
+    "apollo-server-micro": "^2.19.0",
+    "isomorphic-unfetch": "^3.1.0",
     "next": "10.0.3",
     "react": "17.0.1",
     "react-dom": "17.0.1"
