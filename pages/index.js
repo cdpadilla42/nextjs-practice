@@ -1,7 +1,11 @@
+import { useState } from 'react';
 import styles from '../styles/Home.module.css';
 import Layout from '../components/Layout';
 import { withApollo } from '../lib/apollo';
 import { useQuery, gql } from '@apollo/client';
+import { initApolloClient } from '../lib/apollo';
+import HabitList from '../components/HabitList';
+import HabitForm from '../components/HabitForm';
 
 const HELLO_QUERY = gql`
   query {
@@ -9,48 +13,24 @@ const HELLO_QUERY = gql`
   }
 `;
 
-function Home() {
-  const { data, loading, error } = useQuery(HELLO_QUERY);
-  if (loading) return <div />;
-  console.log(data);
+export async function getServerSideProps(context) {
+  const data = await initApolloClient().query({
+    query: HELLO_QUERY,
+  });
+
+  return {
+    props: { data }, // will be passed to the page component as props
+  };
+}
+
+function Home({ data }) {
+  const [habits, setHabits] = useState(['Do the dishes']);
   return (
     <Layout>
-      <h1 className={styles.title}>{data.sayHello}</h1>
-
-      <p className={styles.description}></p>
-
-      <p className={styles.description}>
-        Get started by editing{' '}
-        <code className={styles.code}>pages/index.js</code>
-      </p>
-
-      <div className={styles.grid}>
-        <a href="https://nextjs.org/docs" className={styles.card}>
-          <h3>Documentation &rarr;</h3>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a href="https://nextjs.org/learn" className={styles.card}>
-          <h3>Learn &rarr;</h3>
-          <p>Learn about Next.js in an interactive course with quizzes!</p>
-        </a>
-
-        <a
-          href="https://github.com/vercel/next.js/tree/master/examples"
-          className={styles.card}
-        >
-          <h3>Examples &rarr;</h3>
-          <p>Discover and deploy boilerplate example Next.js projects.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          className={styles.card}
-        >
-          <h3>Deploy &rarr;</h3>
-          <p>Instantly deploy your Next.js site to a public URL with Vercel.</p>
-        </a>
-      </div>
+      <h1 className={styles.title}>{data.data.sayHello}</h1>
+      <p>Level up your life</p>
+      <HabitForm setHabits={setHabits} />
+      <HabitList habits={habits} />
     </Layout>
   );
 }

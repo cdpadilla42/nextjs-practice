@@ -10,7 +10,10 @@
   },
   "dependencies": {
     "@apollo/client": "^3.2.9",
+    "@apollo/react-ssr": "^4.0.0",
+    "@leveluptuts/fresh": "^0.2.13",
     "apollo-server-micro": "^2.19.0",
+    "deepmerge": "^4.2.2",
     "isomorphic-unfetch": "^3.1.0",
     "next": "10.0.3",
     "react": "17.0.1",
