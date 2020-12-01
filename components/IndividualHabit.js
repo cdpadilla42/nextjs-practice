@@ -7,13 +7,11 @@ const IndividualHabit = ({ habit }) => {
     <article>
       <h3>{habit}</h3>
       <div>
-        {dates.map((day) => {
-          const [month, date] = day.toLocaleDateString('en-US').split('/');
+        {dates.map((date) => {
           return (
-            <>
-              <span>{month + '/' + date}</span>
-              <HabitButton>0</HabitButton>
-            </>
+            <HabitButton day={date} key={date.toString()}>
+              0
+            </HabitButton>
           );
         })}
       </div>
