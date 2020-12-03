@@ -8,7 +8,7 @@ const IndividualHabit = ({ habit, index }) => {
   const color = '#718096';
   return (
     <article>
-      <h3 style={{ borderColor: colors[index % 5] }}>{habit}</h3>
+      <h3 style={{ borderColor: colors[index % 5] }}>{habit.name}</h3>
       <div className="buttons">
         {dates.map((date) => {
           return (

@@ -9,7 +9,7 @@ export const habitsMutations = {
         if (err) return console.error(err);
         return newHabit;
       });
-      return result;
+      console.log(result);
     },
   },
 };
