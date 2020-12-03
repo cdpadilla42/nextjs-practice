@@ -1,4 +1,4 @@
-export const habitsMutations = {
+export const habitsResolvers = {
   Mutation: {
     async habits() {
       console.log('habits');

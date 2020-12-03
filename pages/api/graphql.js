@@ -1,19 +1,31 @@
 import { ApolloServer, gql } from 'apollo-server-micro';
+import { mergeResolvers, mergeTypeDefs } from 'graphql-tools';
 import connectDb from '../../lib/mongoose';
+import { habitsResolvers } from '../../api/habits/resolvers';
+import { habitsMutations } from '../../api/habits/mutations';
+import Habits from '../../api/habits/Habits.graphql';
 
-const typeDefs = gql`
+const fakeTypeDefs = gql`
   type Query {
     sayHello: String
   }
 `;
 
-const resolvers = {
+const fakeResolvers = {
   Query: {
     sayHello(parent, args, context) {
       return 'hey there';
     },
   },
 };
+
+const resolvers = mergeResolvers([
+  fakeResolvers,
+  // habitsResolvers,
+  habitsMutations,
+]);
+
+const typeDefs = mergeTypeDefs([fakeTypeDefs, Habits]);
 
 const apolloServer = new ApolloServer({ typeDefs, resolvers });
 
