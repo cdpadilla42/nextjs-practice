@@ -5,10 +5,11 @@ export const habitsMutations = {
     async addHabit(_, { habit }) {
       console.log('add habit', habit);
       const newHabit = new Habit(habit);
-      newHabit.save((err, newHabit) => {
+      const result = await newHabit.save((err, newHabit) => {
         if (err) return console.error(err);
-        console.log('saved', newHabit);
+        return newHabit;
       });
+      return result;
     },
   },
 };

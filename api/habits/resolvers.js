@@ -1,13 +1,10 @@
+import Habit from './habits';
+
 export const habitsResolvers = {
-  Mutation: {
+  Query: {
     async habits() {
-      console.log('habits');
-      return [
-        {
-          _id: 'somefunkyarray',
-          name: 'Make my bed',
-        },
-      ];
+      const results = await Habit.find({}).exec();
+      return results;
     },
   },
 };

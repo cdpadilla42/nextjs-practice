@@ -21,7 +21,7 @@ const fakeResolvers = {
 
 const resolvers = mergeResolvers([
   fakeResolvers,
-  // habitsResolvers,
+  habitsResolvers,
   habitsMutations,
 ]);
 
