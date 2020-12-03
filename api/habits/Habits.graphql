@@ -1,0 +1,22 @@
+# type and field for all that will be available to the api
+type Habit {
+  _id: ID!
+  name: String!
+}
+
+# Shaping the data that goes into the api
+input HabitInput {
+  _id: ID
+  name: String!
+}
+
+# Which kinds of mutations we can perform - add, delete, update
+type Mutation {
+  addHabit(habit: HabitInput): Habit
+  # (the input) : what is returned
+}
+
+# Your query itself
+type Query {
+  habits: [Habit]
+}
