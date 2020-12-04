@@ -4,7 +4,6 @@ const colors = ['#718096', '#F56565', '#F6E05E', '#68D391', '#63B3ED'];
 
 const IndividualHabit = ({ habit, index }) => {
   const dates = getLast5Days();
-  console.log(dates);
   const color = '#718096';
   return (
     <article>

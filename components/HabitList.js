@@ -11,7 +11,6 @@ const GET_HABITS = gql`
 `;
 
 const HabitList = ({ habits }) => {
-  // TODO: Bring in Apollo Client to query your DB
   const { loading, error, data } = useQuery(GET_HABITS);
 
   if (loading) return <p>Loading...</p>;
