@@ -2,7 +2,7 @@ import Habit from './IndividualHabit';
 import { useQuery, gql } from '@apollo/client';
 
 const GET_HABITS = gql`
-  query {
+  query getHabits {
     habits {
       name
       _id

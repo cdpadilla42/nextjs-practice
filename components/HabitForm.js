@@ -12,24 +12,7 @@ const ADD_HABBIT = gql`
 
 const HabitForm = ({ setHabits }) => {
   const [addHabit, { error, data }] = useMutation(ADD_HABBIT, {
-    update(cache, { data: { addHabit } }) {
-      cache.modify({
-        fields: {
-          habits(existingHabits = []) {
-            const newHabitRef = cache.writeFragment({
-              data: addHabit,
-              fragment: gql`
-                fragment NewHabit on Habit {
-                  id
-                  name
-                }
-              `,
-            });
-            return [...existingHabits, newHabitRef];
-          },
-        },
-      });
-    },
+    refetchQueries: ['getHabits'],
   });
 
   return (

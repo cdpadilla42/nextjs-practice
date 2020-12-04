@@ -4,7 +4,6 @@ const colors = ['#718096', '#F56565', '#F6E05E', '#68D391', '#63B3ED'];
 
 const IndividualHabit = ({ habit, index }) => {
   const dates = getLast5Days();
-  const color = '#718096';
   return (
     <article>
       <h3 style={{ borderColor: colors[index % 5] }}>{habit.name}</h3>
