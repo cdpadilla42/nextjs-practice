@@ -1,33 +1,29 @@
 import { useState } from 'react';
 import styles from '../styles/Home.module.css';
 import Layout from '../components/Layout';
-import { withApollo } from '../lib/apollo';
 import { useQuery, gql } from '@apollo/client';
-import { initApolloClient } from '../lib/apollo';
+import { initializeApollo, addApolloState } from '../lib/apollo';
 import HabitList from '../components/HabitList';
 import HabitForm from '../components/HabitForm';
-
-const HELLO_QUERY = gql`
-  query {
-    sayHello
-  }
-`;
+import { GET_HABITS } from '../components/HabitList';
 
 export async function getServerSideProps(context) {
-  const data = await initApolloClient().query({
-    query: HELLO_QUERY,
+  const apolloClient = initializeApollo();
+
+  await apolloClient.query({
+    query: GET_HABITS,
   });
 
-  return {
-    props: { data }, // will be passed to the page component as props
-  };
+  return addApolloState(apolloClient, {
+    props: {},
+  });
 }
 
-function Home({ data }) {
+function Home() {
   const [habits, setHabits] = useState(['Do the dishes']);
   return (
     <Layout>
-      <h1 className={styles.title}>{data.data.sayHello}</h1>
+      <h1 className={styles.title}>{'Hey'}</h1>
       <p>Level up your life</p>
       <HabitForm setHabits={setHabits} />
       <HabitList habits={habits} />
@@ -35,4 +31,4 @@ function Home({ data }) {
   );
 }
 
-export default withApollo(Home);
+export default Home;

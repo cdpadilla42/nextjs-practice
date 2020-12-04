@@ -1,7 +1,8 @@
 import Habit from './IndividualHabit';
 import { useQuery, gql } from '@apollo/client';
+import { addApolloState, initializeApollo } from '../lib/apollo';
 
-const GET_HABITS = gql`
+export const GET_HABITS = gql`
   query getHabits {
     habits {
       name
@@ -11,7 +12,9 @@ const GET_HABITS = gql`
 `;
 
 const HabitList = ({ habits }) => {
-  const { loading, error, data } = useQuery(GET_HABITS);
+  const { loading, error, data } = useQuery(GET_HABITS, {
+    notifyOnNetworkStatusChange: true,
+  });
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Something went wrong!</p>;
