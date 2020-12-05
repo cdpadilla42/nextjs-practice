@@ -1,4 +1,4 @@
-import Habit from './habits';
+import Habit, { Event } from './habits';
 
 export const habitsMutations = {
   Mutation: {
@@ -17,7 +17,23 @@ export const habitsMutations = {
     },
 
     async addEvent(_, { habitId, date }) {
-      console.log('add event');
+      try {
+        console.log('saving...');
+        console.log(habitId);
+        console.log(date);
+        date.setHours(0, 0, 0, 0);
+        // const oldHabit = Habit.findById(habitId);
+        const habit = await Habit.findByIdAndUpdate(habitId, {
+          $addToSet: {
+            events: {
+              date,
+            },
+          },
+        });
+        return habit;
+      } catch (e) {
+        console.log(e);
+      }
     },
 
     async removeEvent(_, { habitId, eventId }) {

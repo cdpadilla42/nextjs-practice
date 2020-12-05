@@ -10,6 +10,9 @@ const EventSchema = new Schema({
   },
 });
 
+export const Event =
+  mongoose.models.events || mongoose.model('events', EventSchema);
+
 export const HabitsSchema = new Schema({
   name: {
     type: String,

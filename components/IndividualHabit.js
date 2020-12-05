@@ -11,7 +11,12 @@ const IndividualHabit = ({ habit, index }) => {
       <div className="buttons">
         {dates.map((date) => {
           return (
-            <HabitButton day={date} key={date.getTime()}>
+            <HabitButton
+              day={date}
+              key={date.getTime()}
+              habitId={habit._id}
+              events={habit.events}
+            >
               0
             </HabitButton>
           );

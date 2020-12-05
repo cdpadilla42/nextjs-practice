@@ -14,7 +14,7 @@ const ADD_EVENT = gql`
 `;
 
 const REMOVE_EVENT = gql`
-  mutation removeEvent($habitId: ID, eventId: ID) {
+  mutation removeEvent($habitId: ID, $eventId: ID) {
     removeEvent(eventId: $eventId, habitId: $habitId) {
       name
       events {
@@ -26,15 +26,47 @@ const REMOVE_EVENT = gql`
   }
 `;
 
-const HabitButton = ({ day }) => {
+const HabitButton = ({ day, habitId, events }) => {
   const [month, date] = day.toLocaleDateString('en-US').split('/');
-  const [addEvent] = useMutation(ADD_EVENT);
+  const [addEvent] = useMutation(ADD_EVENT, {
+    refetchQueries: ['getHabits'],
+  });
+  const [removeEvent] = useMutation(REMOVE_EVENT, {
+    refetchQueries: ['getHabits'],
+  });
+  const found = false;
+
   return (
     <span>
       {month + '/' + date}
-      {}
+      {found ? (
+        <button
+          onClick={() =>
+            removeEvent({
+              variables: {
+                habitId,
+                eventId: 'fdfsdfs',
+              },
+            })
+          }
+        >
+          X
+        </button>
+      ) : (
+        <button
+          onClick={() =>
+            addEvent({
+              variables: {
+                habitId,
+                date,
+              },
+            })
+          }
+        >
+          X
+        </button>
+      )}
 
-      <button onClick={() => console.log('do stuff')}>'X'</button>
       <style jsx>{`
         span {
           display: flex;
