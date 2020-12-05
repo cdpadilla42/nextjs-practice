@@ -7,6 +7,9 @@ export const GET_HABITS = gql`
     habits {
       name
       _id
+      events {
+        date
+      }
     }
   }
 `;
