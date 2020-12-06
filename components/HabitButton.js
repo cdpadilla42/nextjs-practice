@@ -27,7 +27,6 @@ const REMOVE_EVENT = gql`
 `;
 
 const HabitButton = ({ day, habitId, events }) => {
-  console.log('day', day.getTime());
   const [month, date] = day.toLocaleDateString('en-US').split('/');
   const [addEvent] = useMutation(ADD_EVENT, {
     refetchQueries: ['getHabits'],
@@ -36,11 +35,8 @@ const HabitButton = ({ day, habitId, events }) => {
     refetchQueries: ['getHabits'],
   });
   const found = events.find((event) => {
-    console.log('comparison', event.date, day.getTime());
     return event.date === day.getTime();
   });
-  console.log('events', events);
-  console.log('found', found);
 
   return (
     <span>
