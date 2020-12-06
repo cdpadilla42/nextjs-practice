@@ -48,6 +48,7 @@ const getLast5Days = () => {
   const dates = '01234'.split('').map((day) => {
     const tempDate = new Date();
     tempDate.setDate(tempDate.getDate() - day);
+    tempDate.setHours(0, 0, 0, 0);
     return tempDate;
   });
   return dates;
