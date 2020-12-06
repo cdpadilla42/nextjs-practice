@@ -16,15 +16,16 @@ const HabitForm = ({ setHabits }) => {
   });
 
   return (
-    <Form
-      onSubmit={(inputs) => {
-        console.log(inputs);
-        addHabit({ variables: { habit: { name: inputs.habit } } });
-        console.log(data);
-      }}
-    >
-      <Field>Habit</Field>
-    </Form>
+    // <Form
+    //   onSubmit={(inputs) => {
+    //     console.log(inputs);
+    //     addHabit({ variables: { habit: { name: inputs.habit } } });
+    //     console.log(data);
+    //   }}
+    // >
+    //   <Field>Habit</Field>
+    // </Form>
+    <span>form</span>
   );
 };
 
