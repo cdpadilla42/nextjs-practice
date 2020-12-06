@@ -1,14 +1,13 @@
-import Head from 'next/Head';
 import styles from '../styles/Home.module.css';
 import Link from 'next/link';
 
 const Layout = ({ children }) => {
   return (
     <>
-      <Head>
+      {/* <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
-      </Head>
+      </Head> */}
       <div className={styles.container}>
         <main className={styles.main}>
           <nav>
