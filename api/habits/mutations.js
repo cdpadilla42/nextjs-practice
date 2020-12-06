@@ -23,13 +23,21 @@ export const habitsMutations = {
         console.log(date);
         date.setHours(0, 0, 0, 0);
         // const oldHabit = Habit.findById(habitId);
-        const habit = await Habit.findByIdAndUpdate(habitId, {
-          $addToSet: {
-            events: {
-              date,
+        const habit = await Habit.findOneAndUpdate(
+          {
+            _id: habitId,
+            'events.date': {
+              $ne: date,
             },
           },
-        });
+          {
+            $addToSet: {
+              events: {
+                date,
+              },
+            },
+          }
+        );
         return habit;
       } catch (e) {
         console.log(e);
