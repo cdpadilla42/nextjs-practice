@@ -18,7 +18,6 @@ export const habitsMutations = {
 
     async addEvent(_, { habitId, date }) {
       try {
-        date.setHours(0, 0, 0, 0);
         // const oldHabit = Habit.findById(habitId);
         const habit = await Habit.findOneAndUpdate(
           {

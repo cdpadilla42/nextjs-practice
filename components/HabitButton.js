@@ -28,8 +28,27 @@ const REMOVE_EVENT = gql`
 
 const HabitButton = ({ day, habitId, events }) => {
   const [month, date] = day.toLocaleDateString('en-US').split('/');
+  console.log('day', day);
+  console.log(events);
   const [addEvent] = useMutation(ADD_EVENT, {
     refetchQueries: ['getHabits'],
+    // update(cache, { data: { addEvent } }) {
+    //   cache.modify({
+    //     fields: {
+    //       habits(existingHabits = []) {
+    //         const newHabitRef = cache.writeFragment({
+    //           data: addEvent,
+    //           fragment: gql`
+    //             fragment NewHabit on Habit {
+    //               events
+    //             }
+    //           `,
+    //         });
+    //         return [...existingHabits, newHabitRef];
+    //       },
+    //   },
+    // });
+    // },
   });
   const [removeEvent] = useMutation(REMOVE_EVENT, {
     refetchQueries: ['getHabits'],
