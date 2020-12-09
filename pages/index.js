@@ -20,13 +20,12 @@ export async function getServerSideProps(context) {
 }
 
 function Home() {
-  const [habits, setHabits] = useState(['Do the dishes']);
   return (
     <Layout>
       <h1 className={styles.title}>{'Hey'}</h1>
       <p>Level up your life</p>
-      <HabitForm setHabits={setHabits} />
-      <HabitList habits={habits} />
+      <HabitForm />
+      <HabitList />
     </Layout>
   );
 }
