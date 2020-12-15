@@ -1,4 +1,4 @@
-// import { Form, Field } from '@leveluptuts/Fresh';
+import { Formik, Field, Form } from 'formik';
 import { useMutation, gql } from '@apollo/client';
 
 const ADD_HABBIT = gql`
@@ -25,7 +25,21 @@ const HabitForm = ({ setHabits }) => {
     // >
     //   <Field>Habit</Field>
     // </Form>
-    <span>form</span>
+    <Formik
+      initialValues={{
+        habbit: '',
+      }}
+      onSubmit={async (values) => {
+        console.log(values.habbit);
+        values.habbit = '';
+      }}
+    >
+      <Form>
+        <label htmlFor="habbit">New Habbit:</label>
+        <Field id="habbit" name="habbit" placeholder="" />
+        <button type="submit">Submit</button>
+      </Form>
+    </Formik>
   );
 };
 
