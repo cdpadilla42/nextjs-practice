@@ -16,15 +16,6 @@ const HabitForm = ({ setHabits }) => {
   });
 
   return (
-    // <Form
-    //   onSubmit={(inputs) => {
-    //     console.log(inputs);
-    //     addHabit({ variables: { habit: { name: inputs.habit } } });
-    //     console.log(data);
-    //   }}
-    // >
-    //   <Field>Habit</Field>
-    // </Form>
     <Formik
       initialValues={{
         habbit: '',
